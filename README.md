@@ -1,1 +1,1 @@
-# OOP_Project
+Simulating global operations of KFC
