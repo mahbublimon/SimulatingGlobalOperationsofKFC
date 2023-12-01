@@ -4,8 +4,3 @@
 ## Simulating Global Operations of KFC <br/>
 ## Contributors
 Thanks to the following people who have contributed to this project: 
-* > https://github.com/mahbublimon
-* > https://github.com/mdSadatbinmunir
-* > https://github.com/ahnafahmed0
-
-Now we are only 3 people working.
