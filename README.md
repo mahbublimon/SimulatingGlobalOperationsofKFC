@@ -2,3 +2,8 @@
 ## Group: Team 9 (Autumn 2023)
 ## Group Name : Grove Street
 ## Simulating Global Operations of KFC <br/>
+## Contributors
+Thanks to the following people who have contributed to this project: 
+* > https://github.com/mahbublimon
+* > https://github.com/mdSadatbinmunir
+* > https://github.com/ahnafahmed0
