@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import mainpkg.utils.HelperMethods;
+import mainpkg.utils.PasswordUtils;
 import model.Datasource;
 import model.User;
 
@@ -14,7 +15,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.sql.SQLException;
-import mainpkg.utils.PasswordUtils;
+import java.time.format.DateTimeFormatter;
 
 public class RegisterController {
 
@@ -45,28 +46,22 @@ public class RegisterController {
         String password = passwordField.getText();
         String confirmPassword = confirmPasswordField.getText();
         String gender = genderComboBoxField.getValue();
-        String dateOfBirth = datePicker.getValue().toString(); // Change this to appropriate date handling
+        String dateOfBirth = datePicker.getValue() != null ? datePicker.getValue().format(DateTimeFormatter.ISO_DATE) : null;
 
-        // Validate input fields
-        if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || phone.isEmpty() ||
-                password.isEmpty() || confirmPassword.isEmpty() || gender == null || dateOfBirth.isEmpty()) {
-            HelperMethods.alertBox("Please fill in all fields.", Alert.AlertType.ERROR, "Registration Failed!");
+        if (!validateInput(firstName, lastName, email, phone, password, confirmPassword, gender, dateOfBirth)) {
             return;
         }
 
-        // Check if the account already exists
         if (accountExists(email)) {
-            HelperMethods.alertBox("An account with this email already exists. Please log in.", Alert.AlertType.WARNING, "Account Exists");
+            HelperMethods.alertBox("An account with this email already exists. Please log in.", Alert.AlertType.WARNING, "Account Exists", Alert.AlertType.ERROR);
             return;
         }
 
-        // Password matching validation
         if (!password.equals(confirmPassword)) {
-            HelperMethods.alertBox("Passwords do not match. Please enter the same password in both fields.", Alert.AlertType.ERROR, "Registration Failed!");
+            HelperMethods.alertBox("Passwords do not match. Please enter the same password in both fields.", Alert.AlertType.ERROR, "Registration Failed!", Alert.AlertType.ERROR);
             return;
         }
 
-        // Registration
         String salt = PasswordUtils.getSalt(30);
         String securePassword = PasswordUtils.generateSecurePassword(password, salt);
 
@@ -79,26 +74,34 @@ public class RegisterController {
 
         addUserTask.setOnSucceeded(e -> {
             if (addUserTask.valueProperty().get()) {
-                // Retrieve the user after successful registration
                 User user = getUserByEmail(email);
-
-                // Set user session information
                 setUserSession(user);
+                saveUserToFile(user);
 
-                // Close the current window
                 Node node = (Node) actionEvent.getSource();
                 dialogStage = (Stage) node.getScene().getWindow();
                 dialogStage.close();
 
-                // Redirect to the appropriate dashboard
                 redirectToDashboard(user.getAdmin());
-
-                // Save user data to file
-                saveUserToFile(user);
             }
         });
 
+        addUserTask.setOnFailed(e -> {
+            Throwable exception = e.getSource().getException();
+            HelperMethods.alertBox("Error during user registration: " + exception.getMessage(), Alert.AlertType.ERROR, "Registration Failed!", Alert.AlertType.ERROR);
+        });
+
         new Thread(addUserTask).start();
+    }
+
+    private boolean validateInput(String firstName, String lastName, String email, String phone, String password,
+                                   String confirmPassword, String gender, String dateOfBirth) {
+        if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || phone.isEmpty() ||
+                password.isEmpty() || confirmPassword.isEmpty() || gender == null || dateOfBirth == null) {
+            HelperMethods.alertBox("Please fill in all fields.", Alert.AlertType.ERROR, "Registration Failed!", Alert.AlertType.ERROR);
+            return false;
+        }
+        return true;
     }
 
     private boolean accountExists(String email) {
@@ -133,13 +136,13 @@ public class RegisterController {
     }
 
     private void saveUserToFile(User user) {
-        // Update the file path as needed
         String filePath = "F:\\KFC\\SimulatingGlobalOperationsofKFC\\src\\data\\userdata.dat";
 
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
             oos.writeObject(user);
-            System.out.println("User data saved to file.");
+            HelperMethods.logInfo("User data saved to file.");
         } catch (IOException e) {
+            HelperMethods.logError("Error saving user data to file: " + e.getMessage());
         }
     }
 }
