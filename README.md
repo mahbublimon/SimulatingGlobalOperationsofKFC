@@ -8,4 +8,4 @@ Thanks to the following people who have contributed to this project:
 * > https://github.com/mdSadatbinmunir
 * > https://github.com/ahnafahmed0
 
-All worked done by 3 just one person don't, so i kicked him out.
+Now we are only 3 people working.
