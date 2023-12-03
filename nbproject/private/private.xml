@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/F:/KFC/SimulatingGlobalOperationsofKFC/src/view/login.fxml</file>
+            <file>file:/F:/KFC/SimulatingGlobalOperationsofKFC/src/view/kitchenmanager/kitchenmanagerdashboard.fxml</file>
+            <file>file:/F:/KFC/SimulatingGlobalOperationsofKFC/src/controller/LoginController.java</file>
+            <file>file:/F:/KFC/SimulatingGlobalOperationsofKFC/src/mainpkg/utils/PasswordUtils.java</file>
+            <file>file:/F:/KFC/SimulatingGlobalOperationsofKFC/src/view/user/pages/products/products.fxml</file>
+            <file>file:/F:/KFC/SimulatingGlobalOperationsofKFC/src/controller/user/pages/UserOrdersController.java</file>
+            <file>file:/F:/KFC/SimulatingGlobalOperationsofKFC/src/view/register.fxml</file>
+            <file>file:/F:/KFC/SimulatingGlobalOperationsofKFC/src/view/fooddeliverypartners/fooddeliverypartnersdashboard.fxml</file>
+            <file>file:/F:/KFC/SimulatingGlobalOperationsofKFC/src/view/user/pages/orders/orders.fxml</file>
+            <file>file:/F:/KFC/SimulatingGlobalOperationsofKFC/src/view/franchiseowner/franchiseownerdashboard.fxml</file>
+            <file>file:/F:/KFC/SimulatingGlobalOperationsofKFC/src/data/userdata.dat</file>
+            <file>file:/F:/KFC/SimulatingGlobalOperationsofKFC/src/view/user/main-dashboard.fxml</file>
+            <file>file:/F:/KFC/SimulatingGlobalOperationsofKFC/src/controller/user/MainDashboardController.java</file>
+            <file>file:/F:/KFC/SimulatingGlobalOperationsofKFC/src/controller/RegisterController.java</file>
+            <file>file:/F:/KFC/SimulatingGlobalOperationsofKFC/src/controller/UserSessionController.java</file>
+            <file>file:/F:/KFC/SimulatingGlobalOperationsofKFC/src/controller/kitchenmanager/KitchenManagerController.java</file>
+            <file>file:/F:/KFC/SimulatingGlobalOperationsofKFC/src/controller/franchiseowner/FranchiseOwnerController.java</file>
+            <file>file:/F:/KFC/SimulatingGlobalOperationsofKFC/src/controller/fooddeliverypartners/FoodDelivaryPartnersController.java</file>
+            <file>file:/F:/KFC/SimulatingGlobalOperationsofKFC/src/mainpkg/utils/HelperMethods.java</file>
+        </group>
+    </open-files>
+</project-private>
