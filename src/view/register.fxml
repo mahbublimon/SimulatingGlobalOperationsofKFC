@@ -44,28 +44,28 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="640.0" layoutY="531.0" mnemonicParsing="false" onAction="" prefHeight="32.0" prefWidth="248.0" styleClass="success" text="Login">
+            <Button layoutX="640.0" layoutY="531.0" mnemonicParsing="false" onAction="#handleLoginButtonAction" prefHeight="32.0" prefWidth="248.0" styleClass="success" text="Login">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Button>
             <ImageView fitHeight="112.0" fitWidth="200.0" layoutX="534.0" layoutY="78.0">
                <image>
-                  <Image url="@../../../../OOP/KFC.png" />
+                  <Image url="@assets/kfc_logo.png" />
                </image>
             </ImageView>
-            <DatePicker layoutX="718.0" layoutY="422.0" prefHeight="30.0" prefWidth="170.0" />
+            <DatePicker fx:id="datePicker" layoutX="718.0" layoutY="422.0" prefHeight="30.0" prefWidth="170.0" />
             <TextField fx:id="phoneField" layoutX="640.0" layoutY="385.0" prefHeight="30.0" prefWidth="248.0" promptText="Phone Number">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </TextField>
-            <PasswordField layoutX="379.0" layoutY="459.0" prefHeight="30.0" prefWidth="248.0" promptText="Password">
+            <PasswordField fx:id="passwordField" layoutX="379.0" layoutY="459.0" prefHeight="30.0" prefWidth="248.0" promptText="Password">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </PasswordField>
-            <PasswordField layoutX="640.0" layoutY="459.0" prefHeight="30.0" prefWidth="248.0" promptText="Confirm Password">
+            <PasswordField fx:id="confirmPasswordField" layoutX="640.0" layoutY="459.0" prefHeight="30.0" prefWidth="248.0" promptText="Confirm Password">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>

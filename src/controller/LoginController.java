@@ -28,15 +28,16 @@ public class LoginController {
 
     @FXML
     public void initialize() {
+        userSelectionComboBox.getItems().clear();
         userSelectionComboBox.getItems().addAll(
                 "Customer",
-                "Admin",  // You can customize the user types as needed
+                "Food Delivery Partners",
                 "Kitchen Manager",
                 "Branch Manager",
                 "Franchise Owner",
                 "Marketing Officer",
                 "Financial Officer",
-                "CEO"
+                "Chief Executive Officer"
         );
     }
 
@@ -47,19 +48,27 @@ public class LoginController {
         String selectedUserType = userSelectionComboBox.getValue();
 
         if (email.isEmpty() || providedPassword.isEmpty() || selectedUserType == null) {
-            HelperMethods.alertBox("Please enter the Email, Password, and select User Type.", null, "Login Failed!", Alert.AlertType.ERROR);
+            HelperMethods.alertBox("Please enter the Email, Password, and select User Type.", Alert.AlertType.ERROR, "Login Failed!");
         } else {
             User user = getUserFromDataFile(email);
 
             if (user == null || !user.getUserType().equals(selectedUserType)) {
-                HelperMethods.alertBox("There is no user registered with that email or selected user type!", null, "Login Failed!", Alert.AlertType.ERROR);
+                HelperMethods.alertBox("There is no user registered with that email or selected user type!", Alert.AlertType.ERROR, "Login Failed!");
             } else {
                 boolean passwordMatch = PasswordUtils.verifyUserPassword(providedPassword, user.getPassword(), user.getSalt());
 
                 if (passwordMatch) {
+                    // Set session details before redirect
+                    UserSessionController usc = UserSessionController.getInstance();
+                    usc.setUserId(user.getId());
+                    usc.setUserFullName(user.getFullName());
+                    usc.setUserName(user.getUsername());
+                    usc.setUserEmail(user.getEmail());
+                    usc.setUserAdmin(user.getAdmin());
+                    usc.setUserStatus(user.getStatus());
                     redirectDashboard(event, user.getAdmin());
                 } else {
-                    HelperMethods.alertBox("Incorrect Email or Password", null, "Login Failed!", Alert.AlertType.ERROR);
+                    HelperMethods.alertBox("Incorrect Email or Password", Alert.AlertType.ERROR, "Login Failed!");
                 }
             }
         }
@@ -72,26 +81,27 @@ public class LoginController {
     private void redirectDashboard(ActionEvent event, int admin) {
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
 
         try {
             FXMLLoader loader;
             switch (admin) {
-                case 0 -> loader = new FXMLLoader(getClass().getResource("/view/customerdashboard.fxml"));
-                case 1 -> loader = new FXMLLoader(getClass().getResource("/view/cheifexecutiveofficerdashboard.fxml"));
-                case 2 -> loader = new FXMLLoader(getClass().getResource("/view/kitchenmanagerdashboard.fxml"));
-                case 3 -> loader = new FXMLLoader(getClass().getResource("/view/branchmanagerdashboard.fxml"));
-                case 4 -> loader = new FXMLLoader(getClass().getResource("/view/franchiseownerdashboard.fxml"));
-                case 5 -> loader = new FXMLLoader(getClass().getResource("/view/marketingofficerdashboard.fxml"));
-                case 6 -> loader = new FXMLLoader(getClass().getResource("/view/financialofficerdashboard.fxml"));
-                case 7 -> loader = new FXMLLoader(getClass().getResource("/view/fooddeliverypartners.fxml"));
+                case 0 -> loader = new FXMLLoader(getClass().getResource("/view/customer/customerdashboard.fxml"));
+                case 1 -> loader = new FXMLLoader(getClass().getResource("/view/ceo/ceodashboard.fxml"));
+                case 2 -> loader = new FXMLLoader(getClass().getResource("/view/kitchenmanager/kitchenmanagerdashboard.fxml"));
+                case 3 -> loader = new FXMLLoader(getClass().getResource("/view/branchmanager/branchmanagerdashboard.fxml"));
+                case 4 -> loader = new FXMLLoader(getClass().getResource("/view/franchiseowner/franchiseownerdashboard.fxml"));
+                case 5 -> loader = new FXMLLoader(getClass().getResource("/view/marketingofficer/marketingofficerdashboard.fxml"));
+                case 6 -> loader = new FXMLLoader(getClass().getResource("/view/financialofficer/financialofficerdashboard.fxml"));
+                case 7 -> loader = new FXMLLoader(getClass().getResource("/view/fooddeliverypartners/fooddeliverypartnersdashboard.fxml"));
                 default -> {
+                    HelperMethods.alertBox("Unknown user role.", Alert.AlertType.ERROR, "Navigation Error");
                     return;
                 }
             }
 
             Scene scene = new Scene(loader.load());
             stage.setScene(scene);
+            stage.show();
         } catch (IOException e) {
             HelperMethods.logError("Error loading dashboard: " + e.getMessage());
         }

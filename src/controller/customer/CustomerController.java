@@ -13,26 +13,39 @@ public class CustomerController {
 
     @FXML
     public void btnOrder(ActionEvent event) {
-        loadPage("/view/customer/orders.fxml", "Orders Page");
+        loadPage("/view/customer/pages/orders/orders.fxml", "Orders Page");
     }
 
     @FXML
     public void btnInformationOnClick(ActionEvent event) {
-        loadPage("/view/customer/information.fxml", "Information Page");
+        showInfoAlert("Information page is coming soon.");
     }
 
     @FXML
     public void btnFeedbackOpinionOnClick(ActionEvent event) {
-        loadPage("/view/customer/feedbackopinion.fxml", "Feedback & Opinion Page");
+        showInfoAlert("Feedback & Opinion page is coming soon.");
     }
 
     @FXML
     public void btnChangePasswordOnClick(ActionEvent event) {
-        loadPage("/view/customer/changepassword.fxml", "Change Password Page");
+        showInfoAlert("Change Password page is coming soon.");
     }
 
     @FXML
     public void btnSignOutOnClick(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Login");
+            stage.show();
+            // Close current window
+            Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            currentStage.close();
+        } catch (IOException e) {
+            showInfoAlert("Unable to sign out. Please try again.");
+        }
     }
 
     private void loadPage(String fxmlFile, String title) {
@@ -45,5 +58,13 @@ public class CustomerController {
             stage.show();
         } catch (IOException e) {
         }
+    }
+
+    private void showInfoAlert(String message) {
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+        alert.setTitle("Coming Soon");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

@@ -13,57 +13,53 @@ public class FranchiseOwnerController {
 
     @FXML
     public void btnMarketAnalysisOnClick(ActionEvent event) {
-        loadPage("MarketAnalysis.fxml", "Market Analysis");
+        showInfoAlert("Market Analysis page is coming soon.");
     }
 
     @FXML
     public void btnBranchPerformanceEvaluationOnClick(ActionEvent event) {
-        loadPage("BranchPerformanceEvaluation.fxml", "Branch Performance Evaluation");
+        showInfoAlert("Branch Performance Evaluation page is coming soon.");
     }
 
     @FXML
     public void btnMenuAndPricingManagementOnClick(ActionEvent event) {
-        loadPage("MenuAndPricingManagement.fxml", "Menu and Pricing Management");
+        showInfoAlert("Menu & Pricing Management page is coming soon.");
     }
 
     @FXML
     public void btnInventoryManagementOnClick(ActionEvent event) {
-        loadPage("InventoryManagement.fxml", "Inventory Management");
+        showInfoAlert("Inventory Management page is coming soon.");
     }
 
     @FXML
     public void btnFranchiseCommunicationOnClick(ActionEvent event) {
-        loadPage("FranchiseCommunication.fxml", "Franchise Communication");
+        showInfoAlert("Franchise Communication page is coming soon.");
     }
 
     @FXML
     public void btnQualityAssuranceOnClick(ActionEvent event) {
-        loadPage("QualityAssurance.fxml", "Quality Assurance");
+        showInfoAlert("Quality Assurance page is coming soon.");
     }
 
     @FXML
     public void btnFinancialAnalysisReportingOnClick(ActionEvent event) {
-        loadPage("FinancialAnalysisReporting.fxml", "Financial Analysis Reporting");
+        showInfoAlert("Financial Analysis & Reporting page is coming soon.");
     }
 
     @FXML
     public void btnMarketingOnClick(ActionEvent event) {
-        loadPage("Marketing.fxml", "Marketing");
+        showInfoAlert("Marketing page is coming soon.");
     }
 
     @FXML
     public void btnHomeOnClick(ActionEvent event) {
     }
 
-    private void loadPage(String fxmlFileName, String title) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/path/to/fxml/" + fxmlFileName));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle(title);
-            stage.show();
-        } catch (IOException e) {            
-        }
+    private void showInfoAlert(String message) {
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+        alert.setTitle("Coming Soon");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

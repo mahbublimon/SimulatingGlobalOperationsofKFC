@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.financialofficer.FinancialOfficerController">
+  <BorderPane prefHeight="600.0" prefWidth="900.0">
+    <center>
+      <StackPane>
+        <children>
+          <Text text="Financial Officer Dashboard" strokeType="OUTSIDE" strokeWidth="0.0">
+            <font>
+              <Font name="Times New Roman" size="24.0" />
+            </font>
+          </Text>
+        </children>
+      </StackPane>
+    </center>
+    <bottom>
+      <StackPane>
+        <children>
+          <Button text="Sign Out" fx:id="btnSignOut" onAction="#btnSignOutOnClick" />
+        </children>
+      </StackPane>
+    </bottom>
+  </BorderPane>
+</StackPane>

@@ -1,15 +1,14 @@
 package model;
 
-import java.sql.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.List;
 
 public class Datasource {
-    private static final String DB_NAME = "store_manager.sqlite";
-    private static final String CONNECTION_STRING = "jdbc:sqlite:C:/src/app/db/" + DB_NAME;
-
     private static final Datasource instance = new Datasource();
-
-    private Connection conn;
 
     private Datasource() {
     }
@@ -18,33 +17,40 @@ public class Datasource {
         return instance;
     }
 
-    public boolean open() {
-        try {
-            conn = DriverManager.getConnection(CONNECTION_STRING);
-            return true;
-        } catch (SQLException e) {
-            return false;
-        }
-    }
-
-    public void close() {
-        try {
-            if (conn != null) {
-                conn.close();
-            }
-        } catch (SQLException e) {
-        }
-    }
-
     public List<Product> getAllProducts(int sortOrder) {
-        // Your implementation here
+        // Not implemented in this iteration
         return null;
     }
+
     public User getUserByEmail(String email) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        File file = new File("userdata.dat");
+        if (!file.exists()) {
+            return null;
+        }
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+            Object obj = ois.readObject();
+            if (obj instanceof User) {
+                User user = (User) obj;
+                if (email.equalsIgnoreCase(user.getEmail())) {
+                    return user;
+                }
+            }
+        } catch (Exception ignored) {
+        }
+        return null;
     }
 
     public Boolean insertNewUser(String firstName, String lastName, String email, String phone, String securePassword, String salt, String gender, String dateOfBirth) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            User user = new User(email, securePassword, salt, 0); // default to Customer
+            user.setFullname(firstName + " " + lastName);
+            user.setUsername(email);
+            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("userdata.dat"))) {
+                oos.writeObject(user);
+            }
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

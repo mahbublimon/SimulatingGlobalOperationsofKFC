@@ -60,7 +60,7 @@ public class BranchManagerController implements Initializable {
 
     @FXML
     public void btnCustomerFeedbackOnClick(ActionEvent event) {
-        loadPage("CustomerFeedback.fxml");
+        loadPage("/view/branchmanager/pages/customercomplaints/customercomplaints.fxml");
     }
 
     @FXML
@@ -94,12 +94,11 @@ public class BranchManagerController implements Initializable {
         stage.close();
     }
 
-    private void loadPage(String fxmlFileName) {
+    private void loadPage(String fxmlPath) {
         try {
-            StackPane newPage = FXMLLoader.load(getClass().getResource(fxmlFileName));
+            StackPane newPage = FXMLLoader.load(getClass().getResource(fxmlPath));
             dashContent.getChildren().setAll(newPage);
         } catch (IOException e) {
-            
         }
     }
 }

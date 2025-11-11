@@ -25,26 +25,41 @@ This project utilizes object-oriented programming principles to simulate various
 
 ## Installation
 
-To run the simulation locally, follow these steps:
+Run locally on Windows using NetBeans (recommended) or CLI.
 
-1. Clone the repository:
+### NetBeans (Ant + JavaFX)
+- Install JDK 20+ (JDK 21 recommended) and JavaFX SDK 21.
+- In NetBeans, set Project Properties → Libraries → Add the JavaFX SDK `lib/*.jar`.
+- Ensure Project Properties → JavaFX has `Main Class` set to `mainpkg.CustomerApplication`.
+- Run the project; the Login screen should open.
 
-    ```bash
-    git clone https://github.com/yourusername/kfc-global-operations.git
+### CLI (javac/java)
+1. Download JavaFX SDK 21 and set `JAVA_FX_LIB` to the `lib` folder path:
+
+    ```powershell
+    $env:JAVA_FX_LIB = "C:\dev\javafx-sdk-21\lib"
     ```
 
-2. Install dependencies:
+2. Compile sources (from project root):
 
-    ```bash
-    cd kfc-global-operations
-    # Add instructions for installing dependencies here
+    ```powershell
+    javac --module-path "$env:JAVA_FX_LIB" --add-modules javafx.controls,javafx.fxml -d build/classes $(Get-ChildItem -Recurse src/*.java | % { $_.FullName })
     ```
 
-3. Run the simulation:
+3. Run the application:
 
-    ```bash
-    # Add command to run the simulation here
+    ```powershell
+    java --module-path "$env:JAVA_FX_LIB" --add-modules javafx.controls,javafx.fxml -cp build/classes mainpkg.CustomerApplication
     ```
+
+### Ant (if installed)
+- From the project root, try:
+
+    ```powershell
+    ant run
+    ```
+
+  Ensure the JavaFX SDK is available on the Ant classpath; NetBeans-managed Ant builds use `nbproject/jfx-impl.xml` and `javafx.*` properties (see `nbproject/project.properties`).
 
 ## Contributing
 

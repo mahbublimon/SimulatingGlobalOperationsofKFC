@@ -15,46 +15,44 @@ public class MarketingOfficerController {
 
     @FXML
     public void btnMarketAnalysisOnClick(ActionEvent event) {
-        loadPage("MarketAnalysis.fxml");
+        showInfoAlert("Market Analysis page is coming soon.");
     }
 
     @FXML
     public void btnProductOnClick(ActionEvent event) {
-        loadPage("Product.fxml");
+        showInfoAlert("Product page is coming soon.");
     }
 
     @FXML
     public void btnBranchDataOnClick(ActionEvent event) {
-        loadPage("BranchData.fxml");
+        showInfoAlert("Branch Data page is coming soon.");
     }
 
     @FXML
     public void btnPromotionsOnClick(ActionEvent event) {
-        loadPage("Promotions.fxml");
+        showInfoAlert("Promotions page is coming soon.");
     }
 
     @FXML
     public void btnLoyaltyProgrammeOnClick(ActionEvent event) {
-        loadPage("LoyaltyProgramme.fxml");
+        showInfoAlert("Loyalty Programme page is coming soon.");
     }
 
     @FXML
     public void btnFeedbackOnClick(ActionEvent event) {
-        loadPage("Feedback.fxml");
+        showInfoAlert("Feedback page is coming soon.");
     }
 
     @FXML
     public void btnHomeOnClick(ActionEvent event) {
     }
 
-    private void loadPage(String fxmlFileName) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/path/to/fxml/" + fxmlFileName));
-            Parent root = loader.load();
-            dashContent.getChildren().clear();
-            dashContent.getChildren().add(root);
-        } catch (IOException e) {            
-        }
+    private void showInfoAlert(String message) {
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+        alert.setTitle("Coming Soon");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
 

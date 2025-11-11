@@ -1,6 +1,6 @@
 package mainpkg;
 
-import controller.RegisterController;
+import controller.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,13 +11,11 @@ public class CustomerApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/register.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login.fxml"));
         Parent root = loader.load();
-        primaryStage.setTitle("Customer Application");
+        primaryStage.setTitle("KFC Global Operations");
         primaryStage.setScene(new Scene(root));
-        RegisterController registerController = loader.getController();
-        registerController.setDialogStage(primaryStage);
-
+        // Controller wiring not needed for login initial display
         primaryStage.show();
     }
 

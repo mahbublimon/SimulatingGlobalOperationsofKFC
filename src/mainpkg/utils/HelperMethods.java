@@ -50,7 +50,10 @@ public class HelperMethods {
         System.err.println("[ERROR] " + message);
     }
 
-    public static void alertBox(String please_fill_in_all_fields, AlertType alertType, String registration_Failed) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public static void alertBox(String infoMessage, AlertType alertType, String title) {
+        Alert alert = new Alert(alertType);
+        alert.setContentText(infoMessage);
+        alert.setTitle(title);
+        alert.showAndWait();
     }
 }

@@ -41,27 +41,27 @@ public class FoodDeliveryPartnersController implements Initializable {
 
     @FXML
     public void btnCheckMarketsOnClick() {
-        loadPage("checkmarket.fxml");
+        showInfoAlert("Check Markets page is coming soon.");
     }
 
     @FXML
     public void btnIncomingOrdersOnClick() {
-        loadPage("incomingorders.fxml");
+        showInfoAlert("Incoming Orders page is coming soon.");
     }
 
     @FXML
     public void btnEarningsOnClick() {
-        loadPage("earnings.fxml");
+        showInfoAlert("Earnings page is coming soon.");
     }
 
     @FXML
     public void btnCustomerSupportOnClick() {
-        loadPage("customersupport.fxml");
+        showInfoAlert("Customer Support page is coming soon.");
     }
 
     @FXML
     public void btnPerformanceReportsOnClick() {
-        loadPage("performancereports.fxml");
+        showInfoAlert("Performance Reports page is coming soon.");
     }
 
     @FXML
@@ -70,13 +70,11 @@ public class FoodDeliveryPartnersController implements Initializable {
         stage.close();
     }
 
-    public void loadPage(String fxmlFileName) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFileName));
-            Parent root = loader.load();
-            dashContent.getChildren().clear();
-            dashContent.getChildren().add(root);
-        } catch (IOException e) {            
-        }
+    private void showInfoAlert(String message) {
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+        alert.setTitle("Coming Soon");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

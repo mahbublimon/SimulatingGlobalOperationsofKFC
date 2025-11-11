@@ -1,7 +1,8 @@
 package model;
 
+import java.io.Serializable;
 
-public class Order {
+public class Order implements Serializable {
 
     private int id;
     private int product_id;

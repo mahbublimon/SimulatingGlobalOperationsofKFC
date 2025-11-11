@@ -14,7 +14,13 @@ public class User implements Serializable {
     private String status;
 
     public User(String email, String storedPassword, String salt, int admin) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.email = email;
+        this.password = storedPassword;
+        this.salt = salt;
+        this.admin = admin;
+        this.username = email;
+        this.fullname = email; // default; can be set later
+        this.status = "active";
     }
     public int getId() {
         return id;
@@ -81,11 +87,30 @@ public class User implements Serializable {
     }
 
     public String getFullName() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return fullname;
     }
 
-    public Object getUserType() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String getUserType() {
+        switch (admin) {
+            case 0:
+                return "Customer";
+            case 1:
+                return "Chief Executive Officer";
+            case 2:
+                return "Kitchen Manager";
+            case 3:
+                return "Branch Manager";
+            case 4:
+                return "Franchise Owner";
+            case 5:
+                return "Marketing Officer";
+            case 6:
+                return "Financial Officer";
+            case 7:
+                return "Food Delivery Partners";
+            default:
+                return "Customer";
+        }
     }
 
 }

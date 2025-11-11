@@ -88,9 +88,9 @@ public class RegisterController {
                 User user = getUserByEmail(email);
                 if (user != null) {
                     setUserSession(user);
-                    closeCurrentWindow(actionEvent);
-                    redirectToDashboard(user.getAdmin());
                     saveUserToFile(user);
+                    // After successful registration, return to Login screen
+                    goToLogin(actionEvent);
                 } else {
                     HelperMethods.alertBox("Error fetching user data after registration.", Alert.AlertType.ERROR, "Registration Failed!");
                 }
@@ -137,4 +137,28 @@ public class RegisterController {
             HelperMethods.logError("Error saving user data to file: " + e.getMessage());
         }
     }
+
+    @FXML
+    public void handleLoginButtonAction(ActionEvent actionEvent) {
+        goToLogin(actionEvent);
+    }
+
+    private void goToLogin(ActionEvent actionEvent) {
+        try {
+            Node node = (Node) actionEvent.getSource();
+            Stage stage = (Stage) node.getScene().getWindow();
+            stage.setScene(new javafx.scene.Scene(javafx.fxml.FXMLLoader.load(getClass().getResource("/view/login.fxml"))));
+            stage.show();
+        } catch (IOException ex) {
+            HelperMethods.logError("Error returning to Login: " + ex.getMessage());
+        }
+    }
 }
+    @FXML
+    public void initialize() {
+        // Populate gender options
+        if (genderComboBoxField != null) {
+            genderComboBoxField.getItems().clear();
+            genderComboBoxField.getItems().addAll("Male", "Female", "Other");
+        }
+    }

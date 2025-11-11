@@ -50,43 +50,42 @@ public class KitchenManagerController implements Initializable {
 
     @FXML
     public void btnMenuOnClick(ActionEvent event) {
-        // Add logic to load the Menu page
-        loadPage("Menu.fxml");
+        showInfoAlert("Menu page is coming soon.");
     }
 
     @FXML
     public void btnInventoryOnClick(ActionEvent event) {
-        loadPage("Inventory.fxml");
+        showInfoAlert("Inventory page is coming soon.");
     }
 
     @FXML
     public void btnCustomerFeedbackOnClick(ActionEvent event) {
-        loadPage("CustomerFeedback.fxml");
+        showInfoAlert("Customer Feedback page is coming soon.");
     }
 
     @FXML
     public void btnDelivaryPartnerOnClick(ActionEvent event) {
-        loadPage("DeliveryPartners.fxml");
+        showInfoAlert("Delivery Partners page is coming soon.");
     }
 
     @FXML
     public void btnEmployeeScheduleOnClick(ActionEvent event) {
-        loadPage("EmployeeSchedule.fxml");
+        showInfoAlert("Employee Schedule page is coming soon.");
     }
 
     @FXML
     public void btnEmployeeMaintenanceOnClick(ActionEvent event) {
-        loadPage("EmployeeMaintenance.fxml");
+        showInfoAlert("Employee Maintenance page is coming soon.");
     }
 
     @FXML
     public void btnFinancialReportOnClick(ActionEvent event) {
-        loadPage("FinancialReport.fxml");
+        showInfoAlert("Financial Report page is coming soon.");
     }
 
     @FXML
     public void btnHealthSafetyProtocolOnClick(ActionEvent event) {
-        loadPage("HealthSafetyProtocol.fxml");
+        showInfoAlert("Health & Safety Protocol page is coming soon.");
     }
 
     @FXML
@@ -95,14 +94,12 @@ public class KitchenManagerController implements Initializable {
         stage.close();
     }
 
-    private void loadPage(String fxmlFileName) {
-        // Load a new FXML page into the dashContent StackPane
-        try {
-            StackPane newPage = FXMLLoader.load(getClass().getResource(fxmlFileName));
-            dashContent.getChildren().setAll(newPage);
-        } catch (IOException e) {
-            
-        }
+    private void showInfoAlert(String message) {
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+        alert.setTitle("Coming Soon");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
 
